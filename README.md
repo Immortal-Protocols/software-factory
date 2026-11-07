@@ -9,7 +9,7 @@ The building blocks behind Immortal’s software development: who does what, how
 | Building block | Purpose |
 | :--- | :--- |
 | **Dot** | Chief of staff: coordinates execution and carries work through to completion. |
-| **Codex threads** | Product planning, engineering management, design, and infrastructure operations. |
+| **Codex threads** | Product planning, engineering management, design, infrastructure operations, and Software Factory maintenance. |
 | **Claude threads** | Product and core engineering, specialist implementation, and QA. |
 | **Grok bot** | Exploration. Its role is still being discovered. |
 | **Notion** | Shared plans, specifications, decisions, and delivery records. |
@@ -28,6 +28,7 @@ flowchart TB
     Managers["Engineering managers<br/>Codex · one per domain"]
     Infra["Dev Infrastructure<br/>Codex lead / operators"]
     Design["Designer<br/>Codex"]
+    Maintainer["Software Factory Maintainer<br/>Codex"]
     Product["Product engineers<br/>Claude"]
     Core["Core engineers<br/>Claude"]
     Specialists["Delivery specialists<br/>Claude"]
@@ -43,6 +44,8 @@ flowchart TB
     Chief --> Infra
     Chief --> Design
     Chief --> QA
+    Chief --> Maintainer
+    PM -. product direction .-> Maintainer
     Managers --> Product
     Managers --> Core
     Infra --> Specialists
@@ -55,7 +58,7 @@ flowchart TB
     class Founder human
     class Chief chief
     class PM,Managers,Infra,Design lead
-    class Product,Core,Specialists,Creative,QA maker
+    class Product,Core,Specialists,Creative,QA,Maintainer maker
 ```
 
 Solid lines show coordination or team ownership. Dotted lines show direction and collaboration. The founder also works directly with product, design, and infrastructure. This is a reusable role map; individual threads and assignments change.
@@ -74,6 +77,7 @@ Turns direction into assignments, starts ready work in parallel, follows up, res
 | **Engineering manager** | Coordinates a technical domain’s product and core engineers and resolves integration dependencies. |
 | **Dev Infrastructure lead / operator** | Owns build environments, cloud operations, deployment, and operational verification. |
 | **Designer** | Develops the experience with the founder and coordinates illustration and prototyping. |
+| **Software Factory Maintainer** | Maintains this repository’s reusable building blocks, roles, and relationships, with PM direction and Chief coordination. |
 
 ### Claude — engineering and investigation
 
@@ -97,6 +101,12 @@ Grok bot is available to experiment with. Its responsibility and place in the te
 **Slack** carries conversations: coordination, questions, status updates, and handoffs.
 
 **The GCP service account** gives authorized automation a machine identity with scoped cloud permissions. It is an access mechanism, not a management role.
+
+## Maintaining this repository
+
+The Software Factory Maintainer keeps this public role map consistent as the factory evolves. PM owns product direction; Chief coordinates execution. Live assignments and delivery status stay in the team’s operational records.
+
+See [Contributing](CONTRIBUTING.md) for scope, coordination, and documentation checks.
 
 ---
 
