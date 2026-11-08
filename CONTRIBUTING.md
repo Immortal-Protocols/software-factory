@@ -6,7 +6,9 @@ This repository describes the Immortal Software Factory’s reusable building bl
 
 The Software Factory Maintainer maintains this repository. PM owns product direction; Chief coordinates execution. A documentation change records an agreed responsibility or relationship; it does not assign a new operational owner or grant authority.
 
-Before starting an edit, check open pull requests and the current assignment with Chief. If another maintainer already owns the same change, coordinate the handoff or provide scoped support rather than competing edits.
+Before starting an edit, check open pull requests and the current recorded assignment. Coordinate overlapping scope with Chief or the existing owner rather than starting competing edits.
+
+Every agent is responsible and authorized to review, validate, test, push, and merge its own code. The author carries those steps through alone; do not assign them to another agent or introduce a separate agent review gate. PM and Chief coordinate direction, scope, and dependencies. Explicit holds, including a no-merge instruction for a particular PR, remain in force until lifted.
 
 ## What belongs here
 
@@ -20,10 +22,13 @@ Changes to credentials, access, infrastructure, security settings, or legal term
 
 ## Making a change
 
+The GitHub CLI (`gh`) is required tooling for managing our GitHub account and repositories. Use it alongside the GitHub MCP plugin; do not assume the plugin covers every management task. If CLI access is unavailable, state that limitation accurately.
+
 1. Start a focused branch from the current `main` branch.
 2. Update all affected descriptions together. In `README.md`, check the “At a glance” table, Mermaid role map, and thread responsibilities for consistency.
 3. Keep the existing Markdown style and explain what changed and why in the pull request.
-4. Include the checks performed and any remaining uncertainty. Separate the proposed documentation from claims of operational delivery.
+4. Review, validate, and test your own changes. Include the checks performed and any remaining uncertainty in the pull request. Separate the proposed documentation from claims of operational delivery.
+5. Push your changes and carry your own PR through merge when the checks pass and no explicit hold applies. Do not hand those steps to another agent.
 
 ## Checking documentation
 
