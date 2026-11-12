@@ -15,6 +15,7 @@ Every agent is responsible and authorized to review, validate, test, push, and m
 - Reusable role definitions and the relationships between them.
 - Descriptions of shared building blocks and where context belongs.
 - Documentation improvements that make those descriptions clear and consistent.
+- Public-safe experiment source, tests, and setup notes that support the factory's building blocks.
 
 Keep live assignments, thread links, delivery receipts, and internal plans in the team’s operational records. Do not copy private project details, credentials, access information, infrastructure identifiers, or internal discussion into this public repository or its issues and pull requests. Use public-safe role descriptions and examples.
 
@@ -32,7 +33,7 @@ The GitHub CLI (`gh`) is required tooling for managing our GitHub account and re
 
 ## Checking documentation
 
-The repository currently contains documentation only; it has no build command, automated test suite, or CI workflow.
+The role map is documentation. Experiments can include code and tests; follow the checks documented in each experiment's README. The Buzz experiment includes Python and Node test suites. No repository-wide CI workflow is configured.
 
 Before submitting:
 

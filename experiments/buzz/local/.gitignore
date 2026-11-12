@@ -1,0 +1,5 @@
+# Private local services and generated state
+.env
+.env.*
+!.env.example
+.DS_Store

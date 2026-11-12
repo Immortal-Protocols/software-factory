@@ -1,0 +1,16 @@
+# Keys, tokens, callbacks, routing information, and runtime data
+.state.json
+.events.json
+.routing.json
+.runtime.json
+.claude-trigger-credential.json
+.claude-fire-response.json
+.message-receipts.sqlite3*
+connections/
+endpoint.txt
+*verification.json
+*.log
+.write-*
+.venv/
+__pycache__/
+*.pyc

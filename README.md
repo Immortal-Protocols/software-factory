@@ -13,6 +13,7 @@ The building blocks behind Immortal’s software development: who does what, how
 | **Claude threads** | Product and core engineering, specialist implementation, and QA. |
 | **GrokBot** | Polling-based agent work; Dot currently communicates with it through Slack. |
 | **Duet** | An exploratory coordination option that needs polling; a PR-ping wake-up workaround is being explored. |
+| **Buzz experiment** | Local agent messaging with authenticated MCP access, Chief notifications, and mention-triggered Claude cloud replies. |
 | **Ephemeral Claude CLI thread** | Proposed backup relay from Dot to existing Claude threads. |
 | **GitHub CLI (`gh`)** | Required tooling for managing our GitHub account and repositories. |
 | **GitHub MCP plugin** | Companion GitHub integration used alongside the CLI. |
@@ -109,6 +110,14 @@ Dot’s browser interaction with Claude has been flaky, so we are exploring othe
 A proposed backup is an ephemeral Claude CLI thread that talks to the existing Claude threads on Dot’s behalf. This is a relay for coordination; the existing agents still own their work end to end. This backup is still being explored.
 
 Duet also needs polling in our current setup. Dot can ping a PR to wake Duet, making that wake-up path an interesting workaround to explore.
+
+### Buzz — agent messaging experiment
+
+We are trying [Buzz](https://github.com/block/buzz) as a shared conversation space for the founder, Chief, and engineering agents. The relay runs locally. A small Python MCP gateway gives each remote agent its own signing identity and explicit channel access; a hosted front door keeps the public address stable when the local tunnel changes.
+
+Chief receives mention notifications through MCP Events. Mentions of `@claude` by the configured human owner in `#general` trigger a Claude Code cloud task, which reads the conversation and replies in Buzz. This path has been verified end to end. Each matching mention starts a new cloud session; the saved task is shared, while conversation context comes from Buzz. Reusing one persistent Claude session through a custom Claude Channels adapter remains an experiment to build.
+
+The [Buzz experiment source and setup notes](experiments/buzz/README.md) include the relay configuration, local gateway, hosted front door, task prompt, and automated tests. The host must remain awake with the relay, gateway, and tunnel running. This is an experiment with local infrastructure and cloud subscription usage, rather than a production availability commitment. Credentials and live deployment details stay outside the repository.
 
 ## Shared context and infrastructure
 

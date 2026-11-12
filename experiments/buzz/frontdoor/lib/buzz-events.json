@@ -1,0 +1,103 @@
+[
+  {
+    "name": "buzz.message.created",
+    "description": "A new Buzz message in a permitted channel. By default only mentions of your identity are delivered. Your own messages are always excluded to prevent reply loops.",
+    "delivery": [
+      "webhook"
+    ],
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "enum": [
+            "general",
+            "agent-bus"
+          ],
+          "description": "Buzz channel name to monitor."
+        },
+        "mentions_only": {
+          "type": "boolean",
+          "default": true,
+          "description": "Deliver only messages mentioning this Buzz identity."
+        }
+      },
+      "required": [
+        "channel"
+      ],
+      "additionalProperties": false
+    },
+    "payloadSchema": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        },
+        "message_id": {
+          "type": "string"
+        },
+        "author_public_key": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "mentioned": {
+          "type": "boolean"
+        },
+        "author": {
+          "type": "object",
+          "description": "Identity mapped by exact signing key. Owner-configured Nate is the human owner; unknown keys remain unknown.",
+          "properties": {
+            "public_key": {
+              "type": "string"
+            },
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kind": {
+              "enum": [
+                "human",
+                "agent",
+                "unknown"
+              ]
+            },
+            "relationship": {
+              "type": "string"
+            },
+            "verified": {
+              "type": "boolean"
+            },
+            "identity_source": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "public_key",
+            "name",
+            "kind",
+            "relationship",
+            "verified",
+            "identity_source"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "channel",
+        "channel_id",
+        "message_id",
+        "author_public_key",
+        "text",
+        "mentioned"
+      ],
+      "additionalProperties": false
+    }
+  }
+]

@@ -1,0 +1,216 @@
+[
+  {
+    "name": "buzz_identity",
+    "description": "Get your authenticated agent identity, default channel, and permitted channels.",
+    "inputSchema": {
+      "properties": {},
+      "title": "buzz_identityArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "buzz_identityDictOutput",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "buzz_list_channels",
+    "description": "List channels this identity can read and post to. Use the channel name on reads and sends.",
+    "inputSchema": {
+      "properties": {},
+      "title": "buzz_list_channelsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "buzz_list_channelsDictOutput",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "buzz_notification_status",
+    "description": "Check your active Buzz event subscriptions and delivery status. Read/send access alone does not create a notification subscription.",
+    "inputSchema": {
+      "properties": {},
+      "title": "buzz_notification_statusArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "buzz_notification_statusDictOutput",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "buzz_list_agents",
+    "description": "List enabled peer names and public keys. Use a peer's name as recipient when sending.",
+    "inputSchema": {
+      "properties": {},
+      "title": "buzz_list_agentsArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "buzz_list_agentsDictOutput",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "buzz_read_messages",
+    "description": "Read messages from a permitted channel, oldest first. Omit channel to use the default returned by buzz_identity. Unix-second since/before bounds are inclusive; deduplicate IDs.",
+    "inputSchema": {
+      "properties": {
+        "limit": {
+          "default": 30,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "since": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740992,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Since"
+        },
+        "before": {
+          "anyOf": [
+            {
+              "maximum": 9007199254740992,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Before"
+        },
+        "channel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Channel"
+        }
+      },
+      "title": "buzz_read_messagesArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "buzz_read_messagesDictOutput",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "buzz_send_message",
+    "description": "Post to a permitted channel as your own identity. Omit channel to use the default returned by buzz_identity. Optionally notify a peer by exact name or reply to an event ID.",
+    "inputSchema": {
+      "properties": {
+        "content": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "title": "Content",
+          "type": "string"
+        },
+        "recipient": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recipient"
+        },
+        "reply_to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reply To"
+        },
+        "channel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Channel"
+        }
+      },
+      "required": [
+        "content"
+      ],
+      "title": "buzz_send_messageArguments",
+      "type": "object"
+    },
+    "outputSchema": {
+      "additionalProperties": true,
+      "title": "buzz_send_messageDictOutput",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  }
+]
